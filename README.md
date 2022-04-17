@@ -1,8 +1,6 @@
 # 순 마켓
 
-### 기술스택
-
-뭘 써볼까:
+### 뭘 써볼까
 
 * JDK 11
 * Gradle 7.X
@@ -20,5 +18,3 @@
     * 분산 DB 환경에서 메시지 큐를 이용한 데이터 동기화 (Kafka)
     * API Composition (MongoDB)
     * Docker
-
-# 이제 ㄱㄱ
