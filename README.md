@@ -4,14 +4,15 @@
 
 * JDK 11
 * Gradle 7.X
+* Junit 5
 * SpringBoot 2.6.X
 * Spring Data JPA, QueryDsl
-* Junit 5
 * Spring Rest Docs
-* RDBMS (postgresql, mariadb): 도메인 별로 다른 DB 써보기
+* RDBMS
+  * postgresql, mariadb: 도메인 별로 다른 DB 써보기
 * Spring Cloud
-    * Service Discovery (Eureka)
-    * API GateWay (Spring Cloud Gateway)
+    * Service Discovery (Eureka Server)
+    * API Gateway (Spring Cloud Gateway)
     * Config Server (Github 이랑 연동)
     * Logging (Sleuth, Zipkin)
     * Monitoring (Prometheus, Grafana)
