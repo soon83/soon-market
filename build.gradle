@@ -28,3 +28,26 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+// 그냥 jar 인 애들
+["web", "test"].each {
+    def subProjectDir = new File(projectDir, it)
+    subProjectDir.eachDir {dir->
+        def projectName = ":${it}-${dir.name}"
+        project(projectName){
+            bootJar.enabled(false)
+            jar.enabled(true)
+        }
+    }
+}
+
+// bootJar 인 애들
+["server"].each {
+    def subProjectDir = new File(projectDir, it)
+    subProjectDir.eachDir {dir->
+        def projectName = ":${it}-${dir.name}"
+        project(projectName){
+
+        }
+    }
+}
