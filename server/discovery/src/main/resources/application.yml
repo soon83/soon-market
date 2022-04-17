@@ -1,0 +1,15 @@
+server:
+  port: 8761
+
+logging:
+  level:
+    com.soon83.discovery: debug
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+spring:
+  application:
+    name: discovery-service

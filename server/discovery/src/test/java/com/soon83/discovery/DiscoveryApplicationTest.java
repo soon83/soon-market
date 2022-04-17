@@ -1,10 +1,10 @@
-package com.soon83.discoveryservice;
+package com.soon83.discovery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DiscoveryServiceApplicationTest {
+class DiscoveryApplicationTest {
 
     @Test
     void contextLoads() {

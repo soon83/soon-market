@@ -1,4 +1,4 @@
 // server 공통 설정
 dependencies {
-
+    //implementation "$boot:spring-boot-starter-web"
 }                

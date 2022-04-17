@@ -44,7 +44,6 @@ subprojects {
     }
 
     dependencies {
-        implementation "$boot:spring-boot-starter-web"
         compileOnly "$lombok"
         annotationProcessor "$lombok"
         testImplementation "$boot:spring-boot-starter-test"
@@ -60,8 +59,6 @@ subprojects {
     def subProjectDir = new File(projectDir, it)
     subProjectDir.eachDir { dir ->
         def projectName = ":${it}-${dir.name}"
-        print("# web, test: $projectName")
-
         project(projectName) {
             bootJar.enabled(false)
             jar.enabled(true)
@@ -74,10 +71,7 @@ subprojects {
     def subProjectDir = new File(projectDir, it)
     subProjectDir.eachDir { dir ->
         def projectName = ":${it}-${dir.name}"
-        print("# server: $projectName")
-
         project(projectName) {
-
         }
     }
 }
