@@ -1,13 +1,12 @@
-package com.soon83.soonmarket;
+package com.soon83.discoveryservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SoonMarketApplicationTests {
+class DiscoveryServiceApplicationTest {
 
     @Test
     void contextLoads() {
     }
-
 }

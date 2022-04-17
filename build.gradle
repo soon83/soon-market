@@ -1,40 +1,68 @@
-plugins {
-    id 'org.springframework.boot' version '2.6.6'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
-}
+buildscript {
+    ext {
+        springBootVersion = '2.6.6'
+        springCloudVersion = '2021.0.1'
+        boot = 'org.springframework.boot'
+        cloud = 'org.springframework.cloud'
+        lombok = 'org.projectlombok:lombok'
+    }
 
-group = 'com.soon83'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+    repositories {
+        mavenCentral()
+    }
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    dependencies {
+        classpath "$boot:spring-boot-gradle-plugin:$springBootVersion"
     }
 }
 
-repositories {
-    mavenCentral()
+allprojects {
+    group = 'com.soon83'
+    version = '0.0.1'
 }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
+subprojects {
+    apply plugin: boot
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+    apply plugin: "idea"
 
-tasks.named('test') {
-    useJUnitPlatform()
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "$cloud:spring-cloud-dependencies:$springCloudVersion"
+        }
+    }
+
+    dependencies {
+        implementation "$boot:spring-boot-starter-web"
+        compileOnly "$lombok"
+        annotationProcessor "$lombok"
+        testImplementation "$boot:spring-boot-starter-test"
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
 }
 
 // 그냥 jar 인 애들
 ["web", "test"].each {
     def subProjectDir = new File(projectDir, it)
-    subProjectDir.eachDir {dir->
+    subProjectDir.eachDir { dir ->
         def projectName = ":${it}-${dir.name}"
-        project(projectName){
+        print("# web, test: $projectName")
+
+        project(projectName) {
             bootJar.enabled(false)
             jar.enabled(true)
         }
@@ -44,9 +72,11 @@ tasks.named('test') {
 // bootJar 인 애들
 ["server"].each {
     def subProjectDir = new File(projectDir, it)
-    subProjectDir.eachDir {dir->
+    subProjectDir.eachDir { dir ->
         def projectName = ":${it}-${dir.name}"
-        project(projectName){
+        print("# server: $projectName")
+
+        project(projectName) {
 
         }
     }

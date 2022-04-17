@@ -1,0 +1,6 @@
+apply from: '../server-build.gradle'
+
+dependencies {
+    // discovery-service
+    implementation "$cloud:spring-cloud-starter-netflix-eureka-server"
+}                
