@@ -1,18 +1,12 @@
 server:
   port: 8080
+  shutdown: graceful
 
 logging:
   level:
     com:
       soon83:
-        apigatewayservice: debug
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+        apigateway: debug
 
 spring:
   application:
@@ -26,26 +20,21 @@ spring:
             preLogger: true
             postLogger: true
       routes:
-        - id: member-service
-          uri: lb://member-service
+        - id: member-api-service
+          uri: lb://member-api-service
           predicates:
-            - Path=/member-service/**
+            - Path=/member-api-service/**
           filters:
             - name: CustomFilter
             - name: LoggingFilter
               args:
-                message: === [Member Service] Logging Filter ===
+                message: === [Member Api Service] Logging Filter ===
                 preLogger: true
                 postLogger: true
 
-        - id: product-service
-          uri: lb://product-service
-          predicates:
-            - Path=/product-service/**
-          filters:
-            - name: CustomFilter
-            - name: LoggingFilter
-              args:
-                message: === [Product Service] Logging Filter ===
-                preLogger: true
-                postLogger: true
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

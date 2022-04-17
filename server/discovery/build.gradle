@@ -1,4 +1,4 @@
 dependencies {
-    // discovery-service
+    // service-discovery
     implementation "$cloud:spring-cloud-starter-netflix-eureka-server"
 }                

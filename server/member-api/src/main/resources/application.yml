@@ -1,0 +1,45 @@
+server:
+  port: 0 # random port
+  shutdown: graceful
+
+logging:
+  level:
+    com:
+      soon83:
+        member: debug
+
+spring:
+  application:
+    name: member-api-service
+  datasource:
+    hikari:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:~/Study/h2/soon-market/test;mode=mysql
+      #jdbc-url: jdbc:h2:tcp://localhost/~/Study/h2/soon-market/test;mode=mysql # TODO h2 서버 설정이 잘 안됨
+      username: sa
+      password:
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        format_sql: true
+    jackson:
+      default-property-inclusion: non_null
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

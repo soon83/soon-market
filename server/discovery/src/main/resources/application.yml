@@ -1,9 +1,12 @@
 server:
   port: 8761
+  shutdown: graceful
 
 logging:
   level:
-    com.soon83.discovery: debug
+    com:
+      soon83:
+        discovery: debug
 
 eureka:
   client:
