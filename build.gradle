@@ -55,7 +55,7 @@ subprojects {
 }
 
 // 그냥 jar 인 애들
-["web", "test"].each {
+["web", "common", "test"].each {
     def subProjectDir = new File(projectDir, it)
     subProjectDir.eachDir { dir ->
         def projectName = ":${it}-${dir.name}"

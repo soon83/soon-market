@@ -1,0 +1,11 @@
+### 회원 단건 등록
+POST http://localhost:8080/member-api-service/api/v1/members
+Content-Type: application/json
+
+{
+  "memberName": "사랑의하츄핑",
+  "memberEmail": "2601948@gmail.com"
+}
+
+### 회원 단건 조회
+GET http://localhost:8080/member-api-service/api/v1/members/mbr_hJHEcfXxJv5tFnBg

@@ -1,5 +1,7 @@
 // server 공통 설정
 dependencies {
+    implementation project(":common-util")
+
     implementation "$boot:spring-boot-starter-web"
     implementation "$boot:spring-boot-starter-data-jpa"
     implementation "$boot:spring-boot-starter-validation"

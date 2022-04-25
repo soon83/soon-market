@@ -1,5 +1,8 @@
 package com.soon83.member.domain;
 
+import lombok.Getter;
+
+@Getter
 public class MemberInfo {
 
     private Long id;

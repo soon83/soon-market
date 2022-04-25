@@ -2,4 +2,4 @@ apply from: '../server-build.gradle'
 
 dependencies {
     implementation "$cloud:spring-cloud-starter-netflix-eureka-client"
-}                
+}

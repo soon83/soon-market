@@ -1,7 +1,7 @@
 rootProject.name = 'soon-market'
 
 // 멀티모듈을 쉽게 만들기 위한 설정
-["server", "web", "test"].each {
+["server", "common", "web", "test"].each {
     def compDir = new File(rootDir, it)
     if (!compDir.exists()) {
         compDir.mkdirs()

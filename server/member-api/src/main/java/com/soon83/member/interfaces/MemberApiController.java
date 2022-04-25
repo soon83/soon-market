@@ -2,45 +2,48 @@ package com.soon83.member.interfaces;
 
 import com.soon83.member.application.MemberFacade;
 import com.soon83.member.domain.MemberCommand;
+import com.soon83.member.domain.MemberInfo;
+import com.soon83.util.UriGenerator;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.UUID;
+import java.net.URISyntaxException;
 
 @Slf4j
 @RestController
 @RequestMapping("/member-api-service/api/v1/members")
+@RequiredArgsConstructor
 public class MemberApiController {
 
-    //private final MemberFacade memberFacade;
+    private final MemberFacade memberFacade;
 
     /**
      * 회원 단건 조회
      * @return
      */
-    @GetMapping("/{memberId}")
-    public ResponseEntity<MemberDto.GetResponse> getMember(@PathVariable Long memberId) {
-        log.debug("# memberId: {}", memberId);
-
-        return ResponseEntity.ok(MemberDto.GetResponse.builder()
-                        .token(UUID.randomUUID().toString())
-                        .name("사랑의하츄핑")
-                        .email("drogba83@gmail.com")
-                .build());
+    @GetMapping("/{memberToken}")
+    public ResponseEntity<MemberDto.GetResponse> retrieveMember(@PathVariable String memberToken) {
+        var memberInfo = memberFacade.retrieveMember(memberToken);
+        var response = new MemberDto.GetResponse(memberInfo);
+        return ResponseEntity.ok(response);
     }
 
+    /**
+     * 회원 단건 등록
+     * @param request
+     * @return
+     * @throws URISyntaxException
+     */
     @PostMapping
-    public ResponseEntity<MemberDto.RegisterRequest> saveMember(@RequestBody @Valid MemberDto.RegisterRequest request) {
-        // TODO MemberDto.RegisterRequest -> MemberStore
-        //MemberCommand command = request.toCommand();
-
-        // TODO save member
-        //memberFacade.registerMember(request);
-
-        // TODO MemberInfo -> MemberDto.RegisterResponse
-        return null;
+    public ResponseEntity<MemberDto.RegisterResponse> registerMember(@RequestBody @Valid MemberDto.RegisterRequest request) throws URISyntaxException {
+        var command = request.toCommand();
+        var memberInfo = memberFacade.registerMember(command);
+        var response = new MemberDto.RegisterResponse(memberInfo);
+        return ResponseEntity
+                .created(UriGenerator.currentUri(response.getMemberToken()))
+                .body(response);
     }
-
 }

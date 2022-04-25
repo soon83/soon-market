@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class MemberStoreImpl implements MemberStore {
 
+    private final MemberRepository memberRepository;
+
     @Override
     public Member store(Member member) {
-        return null;
+        return memberRepository.save(member);
     }
 }

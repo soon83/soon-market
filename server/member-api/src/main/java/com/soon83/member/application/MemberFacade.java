@@ -14,8 +14,11 @@ public class MemberFacade {
 
     private final MemberService memberService;
 
+    public MemberInfo retrieveMember(String memberToken) {
+        return memberService.retrieveMember(memberToken);
+    }
+
     public MemberInfo registerMember(MemberCommand command) {
-        //return memberService.registerMember(command);
-        return null;
+        return memberService.registerMember(command);
     }
 }

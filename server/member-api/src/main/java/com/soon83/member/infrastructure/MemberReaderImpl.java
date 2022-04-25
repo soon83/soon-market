@@ -1,6 +1,6 @@
 package com.soon83.member.infrastructure;
 
-import com.soon83.member.domain.Member;
+import com.soon83.member.domain.MemberInfo;
 import com.soon83.member.domain.MemberReader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,8 +11,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class MemberReaderImpl implements MemberReader {
 
+    private final MemberRepository memberRepository;
+
     @Override
-    public Member getMember(String memberToken) {
-        return null;
+    public MemberInfo getMember(String memberToken) {
+        return memberRepository.findByToken(memberToken)
+                .map(MemberInfo::new)
+                .orElseThrow(() -> new RuntimeException("그런 사람 또 없습니다. -이승철-"));
     }
 }
