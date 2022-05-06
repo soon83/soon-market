@@ -1,4 +1,4 @@
-package com.soon83.member.interfaces;
+package com.soon83.member.interfaces.member;
 
 import com.soon83.member.domain.MemberCommand;
 import com.soon83.member.domain.MemberInfo;

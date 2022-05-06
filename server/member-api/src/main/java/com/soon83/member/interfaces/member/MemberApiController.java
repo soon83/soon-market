@@ -1,8 +1,6 @@
-package com.soon83.member.interfaces;
+package com.soon83.member.interfaces.member;
 
 import com.soon83.member.application.MemberFacade;
-import com.soon83.member.domain.MemberCommand;
-import com.soon83.member.domain.MemberInfo;
 import com.soon83.util.UriGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +23,9 @@ public class MemberApiController {
      * @return
      */
     @GetMapping("/{memberToken}")
-    public ResponseEntity<MemberDto.GetResponse> retrieveMember(@PathVariable String memberToken) {
+    public ResponseEntity<MemberDto.GetResponse> retrieveMember(@PathVariable String memberToken, @ModelAttribute MemberDto.RegisterRequest request) {
+        log.debug("# MemberDto.RegisterRequest: {}", request.getClass());
+
         var memberInfo = memberFacade.retrieveMember(memberToken);
         var response = new MemberDto.GetResponse(memberInfo);
         return ResponseEntity.ok(response);

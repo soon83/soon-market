@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -18,7 +20,7 @@ public class MemberFacade {
         return memberService.retrieveMember(memberToken);
     }
 
-    public MemberInfo registerMember(MemberCommand command) {
+    public MemberInfo registerMember(@NotNull MemberCommand command) {
         return memberService.registerMember(command);
     }
 }
