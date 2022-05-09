@@ -1,13 +1,11 @@
 package com.soon83.member.application;
 
+import com.soon83.member.domain.MemberCommand;
 import com.soon83.member.domain.MemberInfo;
 import com.soon83.member.domain.MemberService;
-import com.soon83.member.domain.MemberCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import javax.validation.constraints.NotNull;
 
 @Slf4j
 @Service
@@ -20,7 +18,7 @@ public class MemberFacade {
         return memberService.retrieveMember(memberToken);
     }
 
-    public MemberInfo registerMember(@NotNull MemberCommand command) {
+    public MemberInfo registerMember(MemberCommand command) {
         return memberService.registerMember(command);
     }
 }

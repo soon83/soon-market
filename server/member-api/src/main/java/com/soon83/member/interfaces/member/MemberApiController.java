@@ -24,8 +24,6 @@ public class MemberApiController {
      */
     @GetMapping("/{memberToken}")
     public ResponseEntity<MemberDto.GetResponse> retrieveMember(@PathVariable String memberToken, @ModelAttribute MemberDto.RegisterRequest request) {
-        log.debug("# MemberDto.RegisterRequest: {}", request.getClass());
-
         var memberInfo = memberFacade.retrieveMember(memberToken);
         var response = new MemberDto.GetResponse(memberInfo);
         return ResponseEntity.ok(response);
