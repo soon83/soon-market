@@ -1,5 +1,5 @@
 server:
-  port: 0 # random port
+  port: 0
   shutdown: graceful
 
 logging:
@@ -15,7 +15,6 @@ spring:
     hikari:
       driver-class-name: org.h2.Driver
       jdbc-url: jdbc:h2:~/Study/h2/soon-market/test;mode=mysql
-      #jdbc-url: jdbc:h2:tcp://localhost/~/Study/h2/soon-market/test;mode=mysql # TODO h2 서버 설정이 잘 안됨
       username: sa
       password:
   jpa:
@@ -27,8 +26,8 @@ spring:
       hibernate:
         default_batch_fetch_size: 100
         format_sql: true
-    jackson:
-      default-property-inclusion: non_null
+  jackson:
+    default-property-inclusion: non_null
   h2:
     console:
       enabled: true
