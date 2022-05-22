@@ -2,7 +2,7 @@
 dependencies {
     implementation project(":common-util")
 
-    // BootStarter
+    // SpringBootStarter
     implementation(
             "$boot:spring-boot-starter-web",
             "$boot:spring-boot-starter-data-jpa",
