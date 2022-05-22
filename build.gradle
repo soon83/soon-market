@@ -54,7 +54,6 @@ subprojects {
     }
 }
 
-// 그냥 jar 인 애들
 ["web", "common", "test"].each {
     def subProjectDir = new File(projectDir, it)
     subProjectDir.eachDir { dir ->
@@ -66,7 +65,6 @@ subprojects {
     }
 }
 
-// bootJar 인 애들
 ["server"].each {
     def subProjectDir = new File(projectDir, it)
     subProjectDir.eachDir { dir ->
