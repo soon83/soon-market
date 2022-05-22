@@ -16,5 +16,4 @@
     * Logging (Sleuth, Zipkin)
     * Monitoring (Prometheus, Grafana)
     * Kafka
-    * API Composition (MongoDB)
     * Docker
