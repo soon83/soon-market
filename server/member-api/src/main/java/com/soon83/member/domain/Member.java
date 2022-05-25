@@ -8,6 +8,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 @Getter
@@ -37,6 +43,13 @@ public class Member {
         DISABLE("비활성화");
 
         private final String description;
+
+        private static final Map<String, Status> descriptionMap = Collections.unmodifiableMap(Stream.of(values())
+                .collect(Collectors.toMap(Status::getDescription, Function.identity())));
+
+        public static Optional<Status> of(String description) {
+            return Optional.ofNullable(descriptionMap.get(description));
+        }
     }
 
     @Builder
