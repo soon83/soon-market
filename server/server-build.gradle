@@ -21,11 +21,11 @@ dependencies {
     )
 
     // MapStruct
-    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
-    annotationProcessor(
+    //implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    /*annotationProcessor(
             'org.mapstruct:mapstruct-processor:1.4.2.Final',
             'org.projectlombok:lombok-mapstruct-binding:0.2.0'
-    )
+    )*/
 
     //runtimeOnly 'org.postgresql:postgresql'
     implementation 'com.h2database:h2'
