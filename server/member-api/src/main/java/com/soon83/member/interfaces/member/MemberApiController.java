@@ -1,6 +1,7 @@
 package com.soon83.member.interfaces.member;
 
 import com.soon83.member.application.MemberFacade;
+import com.soon83.member.common.response.CommonResponse;
 import com.soon83.util.UriGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +24,11 @@ public class MemberApiController {
      * @return
      */
     @GetMapping("/{memberToken}")
-    public ResponseEntity<MemberDto.GetResponse> retrieveMember(@PathVariable String memberToken, @ModelAttribute MemberDto.RegisterRequest request) {
+    public ResponseEntity<CommonResponse> retrieveMember(@PathVariable String memberToken, @ModelAttribute MemberDto.RegisterRequest request) {
         var memberInfo = memberFacade.retrieveMember(memberToken);
         var response = new MemberDto.GetResponse(memberInfo);
-        return ResponseEntity.ok(response);
+
+        return ResponseEntity.ok(CommonResponse.success(response));
     }
 
     /**
@@ -36,12 +38,12 @@ public class MemberApiController {
      * @throws URISyntaxException
      */
     @PostMapping
-    public ResponseEntity<MemberDto.RegisterResponse> registerMember(@RequestBody @Valid MemberDto.RegisterRequest request) throws URISyntaxException {
+    public ResponseEntity<CommonResponse> registerMember(@RequestBody @Valid MemberDto.RegisterRequest request) throws URISyntaxException {
         var command = request.toCommand();
         var memberInfo = memberFacade.registerMember(command);
         var response = new MemberDto.RegisterResponse(memberInfo);
         return ResponseEntity
                 .created(UriGenerator.currentUri(response.getMemberToken()))
-                .body(response);
+                .body(CommonResponse.success(response));
     }
 }
