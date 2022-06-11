@@ -2,13 +2,13 @@ package com.soon83.member.common.exception;
 
 import com.soon83.member.common.response.ErrorCode;
 
-public class EntityNotFoundException extends BaseException {
+public class MemberNotFoundException extends BaseException {
 
-    public EntityNotFoundException() {
-        super(ErrorCode.COMMON_INVALID_PARAMETER);
+    public MemberNotFoundException() {
+        super(ErrorCode.MEMBER_NOT_FOUND);
     }
 
-    public EntityNotFoundException(String message) {
-        super(message, ErrorCode.COMMON_INVALID_PARAMETER);
+    public MemberNotFoundException(String message) {
+        super(message, ErrorCode.MEMBER_NOT_FOUND);
     }
 }
