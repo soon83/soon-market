@@ -85,9 +85,9 @@ public class CommonControllerAdvice {
         String eventId = MDC.get(CommonHttpRequestInterceptor.HEADER_REQUEST_UUID_KEY);
         log.warn("[BaseException] eventId = {}, errorMsg = {}", eventId, NestedExceptionUtils.getMostSpecificCause(e).getMessage());
         BindingResult bindingResult = e.getBindingResult();
-        FieldError fe = bindingResult.getFieldError();
-        if (fe != null) {
-            String message = "Request Error" + " " + fe.getField() + "=" + fe.getRejectedValue() + " (" + fe.getDefaultMessage() + ")";
+        FieldError fieldError = bindingResult.getFieldError();
+        if (fieldError != null) {
+            String message = "Request Error" + " " + fieldError.getField() + "=" + fieldError.getRejectedValue() + " (" + fieldError.getDefaultMessage() + ")";
             return CommonResponse.failure(message, ErrorCode.COMMON_INVALID_PARAMETER);
         } else {
             return CommonResponse.failure(ErrorCode.COMMON_INVALID_PARAMETER);
