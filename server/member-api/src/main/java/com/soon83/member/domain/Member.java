@@ -1,10 +1,9 @@
 package com.soon83.member.domain;
 
+import com.soon83.member.common.enumcode.EnumMapper;
+import com.soon83.member.common.enumcode.EnumMapperType;
 import com.soon83.util.TokenGenerator;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
@@ -36,19 +35,29 @@ public class Member {
     private Status status;
 
     @Getter
-    @RequiredArgsConstructor
-    public enum Status {
+    @AllArgsConstructor
+    public enum Status implements EnumMapperType {
 
         ENABLE("활성화"),
         DISABLE("비활성화");
 
-        private final String description;
+        private final String title;
 
         private static final Map<String, Status> descriptionMap = Collections.unmodifiableMap(Stream.of(values())
-                .collect(Collectors.toMap(Status::getDescription, Function.identity())));
+                .collect(Collectors.toMap(Status::getTitle, Function.identity())));
 
         public static Optional<Status> of(String description) {
             return Optional.ofNullable(descriptionMap.get(description));
+        }
+
+        @Override
+        public String getCode() {
+            return name();
+        }
+
+        @Override
+        public String getTitle() {
+            return title;
         }
     }
 
