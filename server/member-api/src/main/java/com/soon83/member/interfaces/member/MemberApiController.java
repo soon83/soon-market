@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping("/member-api-service/api/v1/members")
+@RequestMapping("/api/v1/members")
 @RequiredArgsConstructor
 public class MemberApiController {
 

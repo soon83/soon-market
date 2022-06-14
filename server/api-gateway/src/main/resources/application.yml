@@ -24,7 +24,19 @@ spring:
           uri: lb://member-api-service
           predicates:
             - Path=/member-api-service/**
+            - Method=POST
           filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/member-api-service/(?<segment>.*), /$\{segment}
+
+        - id: member-api-service
+          uri: lb://member-api-service
+          predicates:
+            - Path=/member-api-service/**
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/member-api-service/(?<segment>.*), /$\{segment}
             - name: CustomFilter
             - name: LoggingFilter
               args:
